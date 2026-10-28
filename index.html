@@ -107,6 +107,7 @@
     .wav-loop:active{transform:scale(.97)}
     .wav-loop.on{border-color:var(--accent);background:color-mix(in srgb,var(--accent) 9%,var(--panel));color:var(--accent-2)}
     .save-name{margin-top:14px}.save-name label{display:block;margin-bottom:7px;color:var(--muted);font:500 10px "IBM Plex Mono"}.save-name-field{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;border:1px solid var(--line);border-radius:6px;background:var(--panel);overflow:hidden}.save-name-field input{min-width:0;height:44px;padding:0 11px;border:0;outline:0;background:transparent}.save-name-field input:focus-visible{box-shadow:inset 0 0 0 2px var(--accent)}.save-name-field span{padding:0 11px;color:var(--muted);font:500 11px "IBM Plex Mono"}.export-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-top:10px}.export-btn{min-height:44px;border:1px solid var(--line);background:var(--panel-2);border-radius:6px;display:flex;align-items:center;justify-content:center;gap:7px;font:600 11px "IBM Plex Mono"}.export-btn.primary{background:var(--accent);color:var(--on-accent);border-color:transparent}.format-note{font-size:10px;color:var(--muted);line-height:1.5;margin:10px 0 0}
+    .orient-row{margin-top:14px}.orient-row>label{display:block;margin-bottom:7px;color:var(--muted);font:500 10px "IBM Plex Mono";letter-spacing:.04em}.orient-switch{display:flex;gap:3px;padding:3px;border:1px solid var(--line);border-radius:8px;background:var(--panel-2)}.orient-btn{flex:1 1 0;min-height:48px;padding:7px 8px;border-radius:6px;background:transparent;color:var(--muted);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;transition:transform 120ms ease-out,background-color 140ms ease-out,color 140ms ease-out}.orient-btn:active{transform:scale(.97)}.orient-btn:focus-visible{outline:2px solid color-mix(in srgb,var(--accent) 45%,transparent);outline-offset:1px}.orient-btn.active{background:var(--accent);color:var(--on-accent)}.orient-btn b{font-size:12px;font-weight:700;line-height:1.2}.orient-btn small{font:500 10px "IBM Plex Mono";opacity:.85;line-height:1.2}.orient-hint{margin:7px 0 0;font-size:10px;color:var(--muted);line-height:1.5}
     .transport{position:sticky;bottom:0;z-index:20;min-height:68px;border-top:1px solid var(--line);background:color-mix(in srgb,var(--panel) 92%,transparent);backdrop-filter:blur(12px);box-shadow:var(--chrome-shadow);display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding:10px 24px;gap:18px}.transport-left,.transport-mid,.transport-right{display:flex;align-items:center;gap:10px}.transport-mid{justify-content:center}.transport-right{justify-content:flex-end}.play-btn{min-width:96px;height:44px;padding:0 17px;border-radius:22px;background:var(--accent);color:var(--on-accent);display:inline-flex;align-items:center;justify-content:center;gap:8px;font-weight:700}.play-btn:focus-visible{outline:3px solid color-mix(in srgb,var(--accent) 34%,transparent);outline-offset:3px}.play-btn.is-starting{opacity:.7}.play-btn span{min-width:28px;text-align:left}.stop-btn{height:44px;padding:0 14px;border-radius:22px;border:1px solid var(--line);background:var(--panel-2);display:inline-flex;align-items:center;justify-content:center;gap:7px;font-weight:600}.stop-btn:focus-visible{outline:3px solid color-mix(in srgb,var(--accent) 34%,transparent);outline-offset:3px}.time{font:600 12px "IBM Plex Mono";min-width:114px}.transport label{font:500 10px "IBM Plex Mono";color:var(--muted)}.tempo{width:60px;height:40px;border:1px solid var(--line);background:var(--panel);border-radius:5px;text-align:center}.vol{width:100px;accent-color:var(--accent)}
     .toast{position:fixed;right:20px;bottom:88px;z-index:50;background:var(--ink);color:var(--bg);padding:12px 15px;border-radius:7px;font-size:12px;box-shadow:var(--shadow);opacity:0;transform:translateY(8px);pointer-events:none;transition:.2s}.toast.show{opacity:1;transform:none}
     .busy{position:fixed;inset:0;z-index:60;background:#0009;display:none;place-items:center}.busy.show{display:grid}.busy-card{width:min(360px,calc(100vw - 32px));background:var(--panel);border:1px solid var(--line);padding:24px;text-align:center;box-shadow:var(--shadow)}.spinner{width:26px;height:26px;border-radius:50%;border:3px solid var(--line);border-top-color:var(--accent);margin:0 auto 13px;animation:spin .8s linear infinite}.busy p{margin:0;font-size:13px}.busy small{display:block;color:var(--muted);margin-top:5px}@keyframes spin{to{transform:rotate(360deg)}}@keyframes recIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
@@ -333,7 +334,8 @@
           <section class="export-panel">
             <div class="panel-head" style="padding:0;height:auto;border:0"><h2 data-i18n="export.title">내보내기</h2><div class="spacer"></div><span class="stat">LOCAL RENDER</span></div>
             <div class="save-name"><label for="midiFileName" data-i18n="export.name">파일 이름</label><div class="save-name-field"><input id="midiFileName" type="text" value="샘플 프로젝트-편곡" maxlength="120" autocomplete="off" enterkeyhint="done" aria-describedby="midiNameHint"></div></div>
-            <div class="export-grid"><button class="export-btn" data-export="midi" data-i18n="export.saveAs">MIDI</button><button class="export-btn primary" data-export="wav">WAV</button><button class="export-btn" data-export="mp3">MP3</button><button class="export-btn" data-export="video">MP4 / VIDEO</button></div>
+            <div class="orient-row"><label id="orientLabel" data-i18n="export.orientation">영상 방향</label><div class="orient-switch" role="group" aria-labelledby="orientLabel"><button type="button" class="orient-btn active" data-orient="landscape" aria-pressed="true"><b data-i18n="export.landscape">가로</b><small>1280 × 720</small></button><button type="button" class="orient-btn" data-orient="portrait" aria-pressed="false"><b data-i18n="export.portrait">세로</b><small>1080 × 1920</small></button></div><p class="orient-hint"><span data-i18n="export.orientHint">영상에만 적용돼요 · 지금 선택</span> <span id="orientSizeHint">1280 × 720</span></p></div>
+            <div class="export-grid"><button class="export-btn" data-export="midi" data-i18n="export.saveAs">MIDI</button><button class="export-btn primary" data-export="wav">WAV</button><button class="export-btn" data-export="mp3">MP3</button><button class="export-btn" id="videoExportBtn" data-export="video">MP4 · 가로</button></div>
             <p class="format-note" id="midiNameHint" data-i18n="export.note">입력한 이름이 MIDI·WAV·MP3·영상 파일 모두에 적용됩니다. WAV는 무손실, MP3는 192 kbps입니다. 영상 MP4는 H.264 영상 + AAC 오디오로 저장되며, 브라우저가 이를 지원하지 않으면 WebM으로 저장됩니다.</p>
           </section>
         </div>
@@ -383,7 +385,7 @@
       'roll.vel':'세기','roll.velAria':'선택한 노트의 세기',
       'info.title':'프로젝트 정보','info.length':'길이','info.notes':'전체 노트','info.tracks':'트랙',
       'info.engineTitle':'내장 신시사이저와 SF2를 함께 쓸 수 있습니다','info.engineDesc':'기본 10가지 음색은 가볍게 합성하고, 보관함에 추가한 SF2는 실제 샘플을 읽어 재생합니다. 여러 폰트의 악기 소리를 트랙별로 골라 쓸 수 있어요.',
-      'export.title':'내보내기','export.name':'파일 이름','export.saveAs':'MIDI','export.note':'입력한 이름이 MIDI·WAV·MP3·영상 파일 모두에 적용됩니다. WAV는 무손실, MP3는 192 kbps입니다. 영상 MP4는 H.264 영상 + AAC 오디오로 저장되며, 브라우저가 이를 지원하지 않으면 WebM으로 저장됩니다.',
+      'export.title':'내보내기','export.name':'파일 이름','export.saveAs':'MIDI','export.orientation':'영상 방향','export.landscape':'가로','export.portrait':'세로','export.orientHint':'영상에만 적용돼요 · 지금 선택','export.orientToast':'영상 방향을 {orient}(으)로 바꿨어요 · {size}','export.note':'입력한 이름이 MIDI·WAV·MP3·영상 파일 모두에 적용됩니다. WAV는 무손실, MP3는 192 kbps입니다. 영상 MP4는 H.264 영상 + AAC 오디오로 저장되며, 브라우저가 이를 지원하지 않으면 WebM으로 저장됩니다. 영상 방향은 가로 1280×720 또는 세로 1080×1920 중 고를 수 있어요.',
       'now.label':'지금 상태',
       'trans.rewindAria':'처음으로','trans.stop':'정지','trans.stopAria':'정지 (처음으로 돌아가기)','trans.play':'재생','trans.playAria':'재생','trans.master':'전체 음량',
       'busy.title':'오디오를 렌더링하고 있어요','busy.sub':'브라우저에서 처리 중입니다',
@@ -451,7 +453,7 @@
       'roll.vel':'Strength','roll.velAria':'Strength of selected note',
       'info.title':'Project info','info.length':'Length','info.notes':'Total notes','info.tracks':'Tracks',
       'info.engineTitle':'You can use the built-in synthesizer and SF2 together','info.engineDesc':'The 10 built-in sounds are light synth sounds, and SF2 files you add play real recorded samples. You can pick sounds from different fonts for each track.',
-      'export.title':'Export','export.name':'File name','export.saveAs':'MIDI','export.note':'The name you enter applies to the MIDI, WAV, MP3 and video files. WAV is lossless and MP3 is 192 kbps. Video MP4 is saved as H.264 video with AAC audio; if the browser does not support that, video is saved as WebM.',
+      'export.title':'Export','export.name':'File name','export.saveAs':'MIDI','export.orientation':'Video orientation','export.landscape':'Landscape','export.portrait':'Portrait','export.orientHint':'Applies to video only · Selected','export.orientToast':'Video orientation set to {orient} · {size}','export.note':'The name you enter applies to the MIDI, WAV, MP3 and video files. WAV is lossless and MP3 is 192 kbps. Video MP4 is saved as H.264 video with AAC audio; if the browser does not support that, video is saved as WebM. You can choose landscape 1280×720 or portrait 1080×1920 for video.',
       'now.label':'Now',
       'trans.rewindAria':'Back to start','trans.stop':'Stop','trans.stopAria':'Stop (back to start)','trans.play':'Play','trans.playAria':'Play','trans.master':'Master volume',
       'busy.title':'Rendering audio','busy.sub':'Processing in your browser',
@@ -497,7 +499,28 @@
     }
   };
   var LANG_STORAGE_KEY='midi-lang';
+  var VIDEO_ORIENT_KEY='midi-video-orientation';
   var currentLang='ko';
+  function detectVideoOrientation(){
+    var saved=null;
+    try{saved=localStorage.getItem(VIDEO_ORIENT_KEY)}catch(e){}
+    return saved==='portrait'?'portrait':'landscape';
+  }
+  function updateVideoOrientationUI(){
+    if(typeof state==='undefined'||!state)return;
+    var orient=state.videoOrientation==='portrait'?'portrait':'landscape';state.videoOrientation=orient;
+    $$('.orient-btn').forEach(function(btn){var on=btn.getAttribute('data-orient')===orient;btn.classList.toggle('active',on);btn.setAttribute('aria-pressed',on?'true':'false')});
+    var vb=$('#videoExportBtn');if(vb)vb.textContent='MP4 · '+t(orient==='portrait'?'export.portrait':'export.landscape');
+    var hint=$('#orientSizeHint');if(hint)hint.textContent=orient==='portrait'?'1080 × 1920':'1280 × 720';
+  }
+  function setVideoOrientation(orient,silent){
+    if(orient!=='portrait'&&orient!=='landscape')orient='landscape';
+    var changed=state.videoOrientation!==orient;
+    state.videoOrientation=orient;
+    try{localStorage.setItem(VIDEO_ORIENT_KEY,orient)}catch(e){}
+    updateVideoOrientationUI();
+    if(changed&&!silent)toast(t('export.orientToast',{orient:t(orient==='portrait'?'export.portrait':'export.landscape'),size:orient==='portrait'?'1080 × 1920':'1280 × 720'}));
+  }
   function detectLang(){
     var saved=null;
     try{saved=localStorage.getItem(LANG_STORAGE_KEY)}catch(e){}
@@ -533,7 +556,7 @@
     /* 2단계: 상태는 그대로 두고 텍스트만 현재 언어로 다시 그린다 */
     renderTemplates();renderCompose();rebuildInstrumentOptions();renderTracks();renderInstrument();renderMeta();renderSoundFonts();renderWavInsts();updateCmpPanel();renderCmpClips();
     if(state.starting){var pl=$('#playLabel');if(pl)pl.textContent=t('trans.ready')}else setPlayIcon(state.playing);
-    updateEditToggleText();refreshBusyText();
+    updateEditToggleText();refreshBusyText();updateVideoOrientationUI();
   }
   function applyLanguage(lang){
     if(!I18N[lang])lang='ko';
@@ -569,7 +592,7 @@
     lead:{name:'아날로그 리드',desc:'밝은 톱니파와 필터가 만드는 선명한 리드.',program:81},
     drums:{name:'드럼 키트',desc:'킥·스네어·하이햇을 음높이에 따라 배치한 전자 드럼.',program:0}
   };
-  var state={name:'샘플 프로젝트',ppq:480,tempo:120,baseTempo:120,duration:16,tracks:[],tplId:null,selected:0,playing:false,starting:false,startedAt:0,offset:0,audio:null,master:null,timer:null,schedTimer:null,schedPtr:null,nodes:[],soundfonts:[],nextSfId:1,wavInsts:[],nextWavId:1,litEls:null,litKeys:null,visPtr:null,visAct:null,visPos:0,visRaf:0,keyMap:{},rollW:0,recPage:0,keyPc:0,keyShift:0,progId:null,octave:4,editMode:false,selNote:null,selTrack:-1,undoStack:[],redoStack:[],rollView:null,cmpClips:[],cmpIdx:-1,cmpSrc:null,cmpRendering:false,grpOtherOpen:false,grpSameAll:false};
+  var state={name:'샘플 프로젝트',ppq:480,tempo:120,baseTempo:120,duration:16,tracks:[],tplId:null,selected:0,playing:false,starting:false,startedAt:0,offset:0,audio:null,master:null,timer:null,schedTimer:null,schedPtr:null,nodes:[],soundfonts:[],nextSfId:1,wavInsts:[],nextWavId:1,litEls:null,litKeys:null,visPtr:null,visAct:null,visPos:0,visRaf:0,keyMap:{},rollW:0,recPage:0,keyPc:0,keyShift:0,progId:null,octave:4,editMode:false,selNote:null,selTrack:-1,undoStack:[],redoStack:[],rollView:null,cmpClips:[],cmpIdx:-1,cmpSrc:null,cmpRendering:false,grpOtherOpen:false,grpSameAll:false,videoOrientation:detectVideoOrientation(),exporting:false};
   var rollDrag=null;
   function demo(){
     function note(p,s,d,v){return {pitch:p,start:s,duration:d,velocity:v||.78}}
@@ -1159,6 +1182,7 @@
     });
     $('#masterVol').oninput=function(){if(state.master)state.master.gain.value=+this.value};
     $$('.export-btn').forEach(function(b){b.onclick=function(){exportProject(this.dataset.export)}});
+    $$('.orient-btn').forEach(function(b){b.addEventListener('click',function(){setVideoOrientation(b.getAttribute('data-orient'))})});updateVideoOrientationUI();
     $('#midiFileName').addEventListener('keydown',function(e){if(e.key==='Enter'){e.preventDefault();exportProject('midi')}});
     $('#helpBtn').onclick=function(){toast(t('help.toast'))};
     window.addEventListener('keydown',function(e){if(e.code==='Space'&&e.target.tagName!=='INPUT'&&e.target.tagName!=='SELECT'){e.preventDefault();togglePlay()}});
@@ -1279,6 +1303,27 @@
   function audioToWav(buffer){var n=buffer.length,ch=2,ab=new ArrayBuffer(44+n*ch*2),v=new DataView(ab),pos=0;function w(s){for(var i=0;i<s.length;i++)v.setUint8(pos++,s.charCodeAt(i))}function u32(x){v.setUint32(pos,x,true);pos+=4}function u16(x){v.setUint16(pos,x,true);pos+=2}w('RIFF');u32(36+n*4);w('WAVEfmt ');u32(16);u16(1);u16(2);u32(buffer.sampleRate);u32(buffer.sampleRate*4);u16(4);u16(16);w('data');u32(n*4);var l=buffer.getChannelData(0),r=buffer.numberOfChannels>1?buffer.getChannelData(1):l;for(var i=0;i<n;i++){var a=Math.max(-1,Math.min(1,l[i])),b=Math.max(-1,Math.min(1,r[i]));v.setInt16(pos,a<0?a*32768:a*32767,true);pos+=2;v.setInt16(pos,b<0?b*32768:b*32767,true);pos+=2}return ab}
   function renderAudio(type){state.exporting=true;busy(true,function(){return t(type==='mp3'?'busy.mp3':'busy.wavRender')},function(){return t('busy.audioSub')});Promise.resolve().then(function(){return renderOffline()}).then(function(buf){if(type==='wav'){download(new Blob([audioToWav(buf)],{type:'audio/wav'}),exportBaseName()+'.wav');state.exporting=false;busy(false);toast(t('export.savedWav'))}else{encodeMP3(buf)}}).catch(function(e){console.error(e);state.exporting=false;busy(false);toast(t('export.renderFail'))})}
   function encodeMP3(buf){if(!window.lamejs||!lamejs.Mp3Encoder){state.exporting=false;busy(false);toast(t('export.noEncoder'));return}try{var sr=buf.sampleRate,enc=new lamejs.Mp3Encoder(2,sr,192),l=buf.getChannelData(0),r=buf.numberOfChannels>1?buf.getChannelData(1):l,block=1152,out=[];for(var i=0;i<l.length;i+=block){var la=new Int16Array(Math.min(block,l.length-i)),ra=new Int16Array(la.length);for(var j=0;j<la.length;j++){la[j]=Math.max(-32768,Math.min(32767,l[i+j]*32767));ra[j]=Math.max(-32768,Math.min(32767,r[i+j]*32767))}var mp=enc.encodeBuffer(la,ra);if(mp.length)out.push(mp)}var end=enc.flush();if(end.length)out.push(end);download(new Blob(out,{type:'audio/mpeg'}),exportBaseName()+'.mp3');state.exporting=false;busy(false);toast(t('export.savedMp3'))}catch(e){console.error(e);state.exporting=false;busy(false);toast(t('export.mp3Fail'))}}
+  function wrapCanvasLines(ctx,text,maxWidth){
+    var str=String(text==null?'':text);if(!str)return[''];
+    var words=str.split(/\s+/).filter(function(w){return !!w});if(!words.length)return[''];
+    var lines=[],cur='';
+    function flush(){if(cur){lines.push(cur);cur=''}}
+    words.forEach(function(word){
+      if(ctx.measureText(word).width>maxWidth){
+        flush();var chunk='';
+        for(var ci=0;ci<word.length;ci++){var ch=word.charAt(ci);if(chunk&&ctx.measureText(chunk+ch).width>maxWidth){lines.push(chunk);chunk=ch}else chunk+=ch}
+        cur=chunk;return;
+      }
+      var test=cur?cur+' '+word:word;
+      if(ctx.measureText(test).width<=maxWidth)cur=test;else{flush();cur=word}
+    });
+    flush();return lines.length?lines:[''];
+  }
+  function truncateCanvasText(ctx,text,maxWidth){
+    var str=String(text==null?'':text);if(ctx.measureText(str).width<=maxWidth)return str;
+    var ell='…';while(str.length&&ctx.measureText(str+ell).width>maxWidth)str=str.slice(0,-1);
+    return str+ell;
+  }
   function exportVideo(){
     if(!window.MediaRecorder||!HTMLCanvasElement.prototype.captureStream||typeof MediaRecorder.isTypeSupported!=='function'){toast(t('export.noVideo'));return}
     // Samsung's stock video player (and most phone players) only play MP4
@@ -1296,7 +1341,9 @@
     state.exporting=true;
     busy(true,function(){return t('busy.video')},function(){return t('busy.videoSub')});
     stopPlayback();state.offset=0;updateTransport();
-    var canvas=document.createElement('canvas');canvas.width=1280;canvas.height=720;
+    var orient=state.videoOrientation==='portrait'?'portrait':'landscape';
+    var VW=orient==='portrait'?1080:1280,VH=orient==='portrait'?1920:720;
+    var canvas=document.createElement('canvas');canvas.width=VW;canvas.height=VH;
     var c=canvas.getContext('2d'),chunks=[],rec=null,oldMaster=null,swapped=false,finished=false,aborted=false,started=false,wallStart=performance.now(),baseName=exportBaseName();
     function cleanup(){if(finished)return;finished=true;state.exporting=false;if(swapped&&oldMaster){try{state.master.disconnect()}catch(e){}state.master=oldMaster}busy(false);updateTransport()}
     try{
@@ -1333,13 +1380,20 @@
         else if(started){try{rec.stop()}catch(e){cleanup()}return}
         else if(performance.now()-wallStart>5000){aborted=true;try{rec.stop()}catch(e){cleanup();toast(t('export.videoFail'))}return}
         var elapsed=Math.max(0,pos);
-        c.fillStyle='#0d1211';c.fillRect(0,0,1280,720);
-        c.fillStyle='#38c6b6';c.font='700 54px sans-serif';c.fillText(state.name,70,100);
-        c.fillStyle='#9daba6';c.font='28px monospace';c.fillText(state.tempo+' BPM  ·  '+formatTime(elapsed,true)+' / '+formatTime(dispDuration(),true),72,150);
-        var active=[];state.tracks.forEach(function(t,ti){t.notes.forEach(function(n){if(noteSongStart(n)<=elapsed&&noteSongStart(n)+noteSongDur(n)>=elapsed)active.push({n:n,ti:ti})})});
-        for(var i=0;i<48;i++){var x=70+i*23,y=590,h=18;c.fillStyle='#24302c';c.fillRect(x,y,18,h)}
-        active.forEach(function(a){var pi=Math.max(0,Math.min(47,a.n.pitch-36)),x=70+pi*23,y=590-a.ti*56;c.fillStyle=colors[a.ti%colors.length];c.fillRect(x,y,Math.max(18,noteSongDur(a.n)*55),38)});
-        c.fillStyle='#eef5f2';c.font='24px sans-serif';state.tracks.forEach(function(t,i){var info=instrumentInfo(t.instrument)||instrumentInfo('piano');c.fillText(t.name+'  /  '+info.name,72,250+i*60)});
+        var isPort=orient==='portrait';
+        var L=isPort?{pad:64,titleFont:'700 68px sans-serif',titleLH:80,titleY:148,tempoFont:'32px monospace',tempoGap:58,trackFont:'30px sans-serif',trackLH:56,trackGap:84,vizBottom:VH-280,vizStep:(VW-128)/48,vizBarW:Math.max(10,(VW-128)/48-4),vizRowH:70,vizActiveH:50,vizBgH:22,maxTitleLines:3}:{pad:70,titleFont:'700 54px sans-serif',titleLH:62,titleY:100,tempoFont:'28px monospace',tempoGap:50,trackFont:'24px sans-serif',trackLH:60,trackGap:100,vizBottom:590,vizStep:23,vizBarW:18,vizRowH:56,vizActiveH:38,vizBgH:18,maxTitleLines:2};
+        var contentW=VW-L.pad*2;
+        c.fillStyle='#0d1211';c.fillRect(0,0,VW,VH);
+        c.fillStyle='#38c6b6';c.font=L.titleFont;
+        var titleLines=wrapCanvasLines(c,state.name,contentW);if(titleLines.length>L.maxTitleLines){titleLines=titleLines.slice(0,L.maxTitleLines);titleLines[L.maxTitleLines-1]=truncateCanvasText(c,titleLines[L.maxTitleLines-1],contentW)}
+        titleLines.forEach(function(line,li){c.fillText(line,L.pad,L.titleY+li*L.titleLH)});
+        var tempoY=L.titleY+(titleLines.length-1)*L.titleLH+L.tempoGap;
+        c.fillStyle='#9daba6';c.font=L.tempoFont;c.fillText(state.tempo+' BPM  ·  '+formatTime(elapsed,true)+' / '+formatTime(dispDuration(),true),L.pad+2,tempoY);
+        var tracksY=tempoY+L.trackGap;
+        c.fillStyle='#eef5f2';c.font=L.trackFont;state.tracks.forEach(function(tr,ti){var info=instrumentInfo(tr.instrument)||instrumentInfo('piano');var line=truncateCanvasText(c,tr.name+'  /  '+info.name,contentW);c.fillText(line,L.pad+2,tracksY+ti*L.trackLH)});
+        var active=[];state.tracks.forEach(function(tr,ti){tr.notes.forEach(function(n){if(noteSongStart(n)<=elapsed&&noteSongStart(n)+noteSongDur(n)>=elapsed)active.push({n:n,ti:ti})})});
+        for(var i=0;i<48;i++){var bx=L.pad+i*L.vizStep;c.fillStyle='#24302c';c.fillRect(bx,L.vizBottom,L.vizBarW,L.vizBgH)}
+        active.forEach(function(a){var pi=Math.max(0,Math.min(47,a.n.pitch-36)),ax=L.pad+pi*L.vizStep,ay=L.vizBottom-a.ti*L.vizRowH,aw=Math.min(Math.max(L.vizBarW,noteSongDur(a.n)*55),VW-L.pad-ax);if(aw<1)aw=L.vizBarW;c.fillStyle=colors[a.ti%colors.length];c.fillRect(ax,ay,aw,L.vizActiveH)});
         if(pos>=dispDuration()+.35){stopPlayback();try{rec.stop()}catch(e){cleanup()}return}
         requestAnimationFrame(frame);
       }
