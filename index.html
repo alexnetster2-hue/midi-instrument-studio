@@ -332,9 +332,9 @@
           </section>
           <section class="export-panel">
             <div class="panel-head" style="padding:0;height:auto;border:0"><h2 data-i18n="export.title">내보내기</h2><div class="spacer"></div><span class="stat">LOCAL RENDER</span></div>
-            <div class="save-name"><label for="midiFileName" data-i18n="export.name">MIDI 파일 이름</label><div class="save-name-field"><input id="midiFileName" type="text" value="샘플 프로젝트-편곡" maxlength="120" autocomplete="off" enterkeyhint="done" aria-describedby="midiNameHint"><span>.mid</span></div></div>
-            <div class="export-grid"><button class="export-btn" data-export="midi" data-i18n="export.saveAs">다른 이름으로 저장</button><button class="export-btn primary" data-export="wav">WAV</button><button class="export-btn" data-export="mp3">MP3</button><button class="export-btn" data-export="video">MP4 / VIDEO</button></div>
-            <p class="format-note" id="midiNameHint" data-i18n="export.note">입력한 이름은 MIDI 저장에만 적용됩니다. WAV는 무손실, MP3는 192 kbps입니다. 영상은 브라우저가 MP4를 지원하지 않으면 WebM으로 저장됩니다.</p>
+            <div class="save-name"><label for="midiFileName" data-i18n="export.name">파일 이름</label><div class="save-name-field"><input id="midiFileName" type="text" value="샘플 프로젝트-편곡" maxlength="120" autocomplete="off" enterkeyhint="done" aria-describedby="midiNameHint"></div></div>
+            <div class="export-grid"><button class="export-btn" data-export="midi" data-i18n="export.saveAs">MIDI</button><button class="export-btn primary" data-export="wav">WAV</button><button class="export-btn" data-export="mp3">MP3</button><button class="export-btn" data-export="video">MP4 / VIDEO</button></div>
+            <p class="format-note" id="midiNameHint" data-i18n="export.note">입력한 이름이 MIDI·WAV·MP3·영상 파일 모두에 적용됩니다. WAV는 무손실, MP3는 192 kbps입니다. 영상 MP4는 H.264 영상 + AAC 오디오로 저장되며, 브라우저가 이를 지원하지 않으면 WebM으로 저장됩니다.</p>
           </section>
         </div>
       </section>
@@ -383,7 +383,7 @@
       'roll.vel':'세기','roll.velAria':'선택한 노트의 세기',
       'info.title':'프로젝트 정보','info.length':'길이','info.notes':'전체 노트','info.tracks':'트랙',
       'info.engineTitle':'내장 신시사이저와 SF2를 함께 쓸 수 있습니다','info.engineDesc':'기본 10가지 음색은 가볍게 합성하고, 보관함에 추가한 SF2는 실제 샘플을 읽어 재생합니다. 여러 폰트의 악기 소리를 트랙별로 골라 쓸 수 있어요.',
-      'export.title':'내보내기','export.name':'MIDI 파일 이름','export.saveAs':'다른 이름으로 저장','export.note':'입력한 이름은 MIDI 저장에만 적용됩니다. WAV는 무손실, MP3는 192 kbps입니다. 영상은 브라우저가 MP4를 지원하지 않으면 WebM으로 저장됩니다.',
+      'export.title':'내보내기','export.name':'파일 이름','export.saveAs':'MIDI','export.note':'입력한 이름이 MIDI·WAV·MP3·영상 파일 모두에 적용됩니다. WAV는 무손실, MP3는 192 kbps입니다. 영상 MP4는 H.264 영상 + AAC 오디오로 저장되며, 브라우저가 이를 지원하지 않으면 WebM으로 저장됩니다.',
       'now.label':'지금 상태',
       'trans.rewindAria':'처음으로','trans.stop':'정지','trans.stopAria':'정지 (처음으로 돌아가기)','trans.play':'재생','trans.playAria':'재생','trans.master':'전체 음량',
       'busy.title':'오디오를 렌더링하고 있어요','busy.sub':'브라우저에서 처리 중입니다',
@@ -425,7 +425,7 @@
       'help.toast':'트랙별 악기를 바꾸고 원래 악기로 되돌리거나, 원하는 파일명으로 MIDI를 저장할 수 있어요.',
       'track.muteAria':'{name} 음소거','track.selectAria':'{name} 트랙 선택',
       'now.font':'폰트 · {name}','now.wav':'WAV 악기 · {name}','now.builtin':'내장 악기','meta.sampleTitle':'악기 소리를 골라 들어보세요',
-      'export.savedMidi':'입력한 이름으로 MIDI를 저장했어요','export.savedWav':'WAV를 저장했어요','export.savedMp3':'MP3를 저장했어요','export.renderFail':'오디오 렌더링에 실패했어요','export.noEncoder':'MP3 인코더를 불러오지 못했어요. WAV를 이용해 주세요.','export.mp3Fail':'MP3 인코딩에 실패했어요. WAV를 이용해 주세요.','export.noVideo':'이 브라우저는 영상 내보내기를 지원하지 않아요','export.savedMp4':'MP4를 저장했어요','export.savedWebm':'브라우저 지원 형식인 WebM으로 저장했어요'
+      'export.savedMidi':'입력한 이름으로 MIDI를 저장했어요','export.savedWav':'WAV를 저장했어요','export.savedMp3':'MP3를 저장했어요','export.renderFail':'오디오 렌더링에 실패했어요','export.noEncoder':'MP3 인코더를 불러오지 못했어요. WAV를 이용해 주세요.','export.mp3Fail':'MP3 인코딩에 실패했어요. WAV를 이용해 주세요.','export.noVideo':'이 브라우저는 영상 내보내기를 지원하지 않아요','export.videoFail':'영상 내보내기에 실패했어요','export.savedMp4':'MP4(AAC 오디오)를 저장했어요','export.savedWebm':'브라우저 지원 형식인 WebM으로 저장했어요','export.mp4NoAac':'MP4로 저장했지만 AAC 오디오가 아니어서 일부 재생 앱에서 소리가 안 날 수 있어요. WAV나 WebM을 이용해 주세요.'
     },
     en:{
       'doc.title':'MIDI Instrument Studio',
@@ -451,7 +451,7 @@
       'roll.vel':'Strength','roll.velAria':'Strength of selected note',
       'info.title':'Project info','info.length':'Length','info.notes':'Total notes','info.tracks':'Tracks',
       'info.engineTitle':'You can use the built-in synthesizer and SF2 together','info.engineDesc':'The 10 built-in sounds are light synth sounds, and SF2 files you add play real recorded samples. You can pick sounds from different fonts for each track.',
-      'export.title':'Export','export.name':'MIDI file name','export.saveAs':'Save with another name','export.note':'The name you enter applies only to MIDI saving. WAV is lossless and MP3 is 192 kbps. If the browser does not support MP4, video is saved as WebM.',
+      'export.title':'Export','export.name':'File name','export.saveAs':'MIDI','export.note':'The name you enter applies to the MIDI, WAV, MP3 and video files. WAV is lossless and MP3 is 192 kbps. Video MP4 is saved as H.264 video with AAC audio; if the browser does not support that, video is saved as WebM.',
       'now.label':'Now',
       'trans.rewindAria':'Back to start','trans.stop':'Stop','trans.stopAria':'Stop (back to start)','trans.play':'Play','trans.playAria':'Play','trans.master':'Master volume',
       'busy.title':'Rendering audio','busy.sub':'Processing in your browser',
@@ -493,7 +493,7 @@
       'help.toast':'You can change instruments per track, restore the original instrument, or save MIDI with the file name you want.',
       'track.muteAria':'Mute {name}','track.selectAria':'Select track {name}',
       'now.font':'Font · {name}','now.wav':'WAV instrument · {name}','now.builtin':'Built-in instrument','meta.sampleTitle':'Pick an instrument sound and listen',
-      'export.savedMidi':'Saved MIDI with the name you entered','export.savedWav':'Saved WAV','export.savedMp3':'Saved MP3','export.renderFail':'Audio rendering failed','export.noEncoder':'Could not load the MP3 encoder. Please use WAV.','export.mp3Fail':'MP3 encoding failed. Please use WAV.','export.noVideo':'This browser does not support video export','export.savedMp4':'Saved MP4','export.savedWebm':'Saved as WebM, the browser-supported format'
+      'export.savedMidi':'Saved MIDI with the name you entered','export.savedWav':'Saved WAV','export.savedMp3':'Saved MP3','export.renderFail':'Audio rendering failed','export.noEncoder':'Could not load the MP3 encoder. Please use WAV.','export.mp3Fail':'MP3 encoding failed. Please use WAV.','export.noVideo':'This browser does not support video export','export.videoFail':'Video export failed','export.savedMp4':'Saved MP4 (AAC audio)','export.savedWebm':'Saved as WebM, the browser-supported format','export.mp4NoAac':'Saved as MP4, but the audio is not AAC, so some players may have no sound. Please use WAV or WebM.'
     }
   };
   var LANG_STORAGE_KEY='midi-lang';
@@ -1271,14 +1271,81 @@
     tempos.sort(function(a,b){return a.tick-b.tick});var baseTempo=tempos.length?Math.round(60000000/tempos[0].us):120;state.tempo=baseTempo;state.baseTempo=baseTempo;$('#tempoInput').value=baseTempo;function tickSec(tick){if(!tempos.length)return tick/state.ppq*60/baseTempo;var sec=0,last=0,us=500000;for(var i=0;i<tempos.length&&tempos[i].tick<=tick;i++){sec+=(tempos[i].tick-last)/state.ppq*us/1000000;last=tempos[i].tick;us=tempos[i].us}return sec+(tick-last)/state.ppq*us/1000000}
     state.tracks=[];raw.forEach(function(rt,idx){var ch=rt.notes[0].channel,pg=rt.programs[ch]||0,inst=programToInstrument(pg,ch);state.tracks.push({name:rt.name||'트랙 '+(idx+1),channel:ch,program:pg,instrument:inst,originalInstrument:inst,gain:ch===9?.62:.8,pan:0,muted:false,notes:rt.notes.map(function(n){var s=tickSec(n.startTick),e=tickSec(n.startTick+n.durTick);return{pitch:n.pitch,start:s,duration:Math.max(.03,e-s),velocity:n.velocity}})})});if(!state.tracks.length)throw Error(t('err.noNotes'));state.selected=0;recalcDuration()}
   function programToInstrument(p,ch){if(ch===9)return'drums';if(p<=7)return p>=4?'epiano':'piano';if(p<=15)return'marimba';if(p<=23)return'organ';if(p<=39)return'bass';if(p<=55)return'strings';if(p<=71)return'brass';if(p<=79)return'flute';return'lead'}
-  function exportProject(type){if(!state.tracks.length)return;if(type==='midi')return exportMIDI();if(type==='wav'||type==='mp3')return renderAudio(type);if(type==='video')return exportVideo()}
+  function exportBaseName(){return midiFileName().replace(/\.mid$/,'')}
+  function exportProject(type){if(!state.tracks.length||state.exporting)return;if(type==='midi')return exportMIDI();if(type==='wav'||type==='mp3')return renderAudio(type);if(type==='video')return exportVideo()}
   function download(blob,name){var a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=name;document.body.appendChild(a);a.click();setTimeout(function(){URL.revokeObjectURL(a.href);a.remove()},1000)}
   function exportMIDI(){var ppq=480,tempo=Math.round(60000000/state.tempo),parts=[];function vlq(v){var b=[v&127];while(v>>=7)b.unshift((v&127)|128);return b}function chunk(bytes){var len=bytes.length;return [77,84,114,107,(len>>>24)&255,(len>>>16)&255,(len>>>8)&255,len&255].concat(bytes)}var meta=[0,255,81,3,(tempo>>16)&255,(tempo>>8)&255,tempo&255,0,255,47,0];parts.push(chunk(meta));state.tracks.forEach(function(t,idx){var ev=[],ch=t.channel===9?9:idx%9,info=instrumentInfo(t.instrument)||instrumentInfo('piano'),pg=info.program||0;if(info.bank){ev.push({tick:0,order:-2,data:[176|ch,0,(info.bank>>7)&127]});ev.push({tick:0,order:-1,data:[176|ch,32,info.bank&127]})}ev.push({tick:0,data:[192|ch,pg]});t.notes.forEach(function(n){var bt=state.baseTempo||state.tempo,st=Math.round(n.start*bt/60*ppq),en=Math.round((n.start+n.duration)*bt/60*ppq);ev.push({tick:st,order:1,data:[144|ch,n.pitch,Math.round(n.velocity*127)]});ev.push({tick:en,order:0,data:[128|ch,n.pitch,0]})});ev.sort(function(a,b){return a.tick-b.tick||(a.order||0)-(b.order||0)});var bytes=[],last=0;ev.forEach(function(e){bytes=bytes.concat(vlq(e.tick-last),e.data);last=e.tick});bytes=bytes.concat([0,255,47,0]);parts.push(chunk(bytes))});var head=[77,84,104,100,0,0,0,6,0,1,(parts.length>>8)&255,parts.length&255,(ppq>>8)&255,ppq&255],all=head.concat.apply(head,parts);download(new Blob([new Uint8Array(all)],{type:'audio/midi'}),midiFileName());toast(t('export.savedMidi'))}
   function renderOffline(){var sr=44100,rate=tempoRate(),len=Math.ceil((state.duration/rate+2)*sr),Ctx=window.OfflineAudioContext||window.webkitOfflineAudioContext,ctx=new Ctx(2,len,sr),master=ctx.createGain();master.gain.value=+$('#masterVol').value;master.connect(ctx.destination);state.tracks.forEach(function(t){if(t.muted)return;t.notes.forEach(function(n){synthNote(ctx,master,t.instrument,n.pitch,n.start/rate,n.duration/rate,n.velocity,t.gain,t.pan)})});return ctx.startRendering()}
   function audioToWav(buffer){var n=buffer.length,ch=2,ab=new ArrayBuffer(44+n*ch*2),v=new DataView(ab),pos=0;function w(s){for(var i=0;i<s.length;i++)v.setUint8(pos++,s.charCodeAt(i))}function u32(x){v.setUint32(pos,x,true);pos+=4}function u16(x){v.setUint16(pos,x,true);pos+=2}w('RIFF');u32(36+n*4);w('WAVEfmt ');u32(16);u16(1);u16(2);u32(buffer.sampleRate);u32(buffer.sampleRate*4);u16(4);u16(16);w('data');u32(n*4);var l=buffer.getChannelData(0),r=buffer.numberOfChannels>1?buffer.getChannelData(1):l;for(var i=0;i<n;i++){var a=Math.max(-1,Math.min(1,l[i])),b=Math.max(-1,Math.min(1,r[i]));v.setInt16(pos,a<0?a*32768:a*32767,true);pos+=2;v.setInt16(pos,b<0?b*32768:b*32767,true);pos+=2}return ab}
-  function renderAudio(type){busy(true,function(){return t(type==='mp3'?'busy.mp3':'busy.wavRender')},function(){return t('busy.audioSub')});renderOffline().then(function(buf){if(type==='wav'){download(new Blob([audioToWav(buf)],{type:'audio/wav'}),state.name+'.wav');busy(false);toast(t('export.savedWav'))}else{encodeMP3(buf)}}).catch(function(e){console.error(e);busy(false);toast(t('export.renderFail'))})}
-  function encodeMP3(buf){if(!window.lamejs){busy(false);toast(t('export.noEncoder'));return}try{var sr=buf.sampleRate,enc=new lamejs.Mp3Encoder(2,sr,192),l=buf.getChannelData(0),r=buf.getChannelData(1),block=1152,out=[];for(var i=0;i<l.length;i+=block){var la=new Int16Array(Math.min(block,l.length-i)),ra=new Int16Array(la.length);for(var j=0;j<la.length;j++){la[j]=Math.max(-32768,Math.min(32767,l[i+j]*32767));ra[j]=Math.max(-32768,Math.min(32767,r[i+j]*32767))}var mp=enc.encodeBuffer(la,ra);if(mp.length)out.push(mp)}var end=enc.flush();if(end.length)out.push(end);download(new Blob(out,{type:'audio/mpeg'}),state.name+'.mp3');busy(false);toast(t('export.savedMp3'))}catch(e){console.error(e);busy(false);toast(t('export.mp3Fail'))}}
-  function exportVideo(){if(!window.MediaRecorder||!HTMLCanvasElement.prototype.captureStream){toast(t('export.noVideo'));return}busy(true,function(){return t('busy.video')},function(){return t('busy.videoSub')});stopPlayback();state.offset=0;var canvas=document.createElement('canvas');canvas.width=1280;canvas.height=720;var c=canvas.getContext('2d'),stream=canvas.captureStream(30),ctx=ensureAudio(),dest=ctx.createMediaStreamDestination(),oldMaster=state.master;state.master=ctx.createGain();state.master.gain.value=+$('#masterVol').value;state.master.connect(ctx.destination);state.master.connect(dest);dest.stream.getAudioTracks().forEach(function(t){stream.addTrack(t)});var mime=MediaRecorder.isTypeSupported('video/mp4')?'video/mp4':(MediaRecorder.isTypeSupported('video/webm;codecs=vp9,opus')?'video/webm;codecs=vp9,opus':'video/webm'),rec=new MediaRecorder(stream,{mimeType:mime}),chunks=[];rec.ondataavailable=function(e){if(e.data.size)chunks.push(e.data)};rec.onstop=function(){state.master.disconnect();state.master=oldMaster;download(new Blob(chunks,{type:mime}),state.name+(mime.indexOf('mp4')>-1?'.mp4':'.webm'));busy(false);toast(mime.indexOf('mp4')>-1?t('export.savedMp4'):t('export.savedWebm'))};rec.start();playPlayback();var start=performance.now();function draw(){var elapsed=(performance.now()-start)/1000;c.fillStyle='#0d1211';c.fillRect(0,0,1280,720);c.fillStyle='#38c6b6';c.font='700 54px sans-serif';c.fillText(state.name,70,100);c.fillStyle='#9daba6';c.font='28px monospace';c.fillText(state.tempo+' BPM  ·  '+formatTime(elapsed,true)+' / '+formatTime(dispDuration(),true),72,150);var active=[];state.tracks.forEach(function(t,ti){t.notes.forEach(function(n){if(noteSongStart(n)<=elapsed&&noteSongStart(n)+noteSongDur(n)>=elapsed)active.push({n:n,ti:ti})})});for(var i=0;i<48;i++){var x=70+i*23,y=590,h=18;c.fillStyle='#24302c';c.fillRect(x,y,18,h)}active.forEach(function(a){var x=70+(a.n.pitch-36)*23,y=590-a.ti*56;c.fillStyle=colors[a.ti%colors.length];c.fillRect(x,y,Math.max(18,noteSongDur(a.n)*55),38)});c.fillStyle='#eef5f2';c.font='24px sans-serif';state.tracks.forEach(function(t,i){var info=instrumentInfo(t.instrument)||instrumentInfo('piano');c.fillText(t.name+'  /  '+info.name,72,250+i*60)});if(elapsed<dispDuration()+.2)requestAnimationFrame(draw);else{stopPlayback();rec.stop()}}requestAnimationFrame(draw)}
+  function renderAudio(type){state.exporting=true;busy(true,function(){return t(type==='mp3'?'busy.mp3':'busy.wavRender')},function(){return t('busy.audioSub')});Promise.resolve().then(function(){return renderOffline()}).then(function(buf){if(type==='wav'){download(new Blob([audioToWav(buf)],{type:'audio/wav'}),exportBaseName()+'.wav');state.exporting=false;busy(false);toast(t('export.savedWav'))}else{encodeMP3(buf)}}).catch(function(e){console.error(e);state.exporting=false;busy(false);toast(t('export.renderFail'))})}
+  function encodeMP3(buf){if(!window.lamejs||!lamejs.Mp3Encoder){state.exporting=false;busy(false);toast(t('export.noEncoder'));return}try{var sr=buf.sampleRate,enc=new lamejs.Mp3Encoder(2,sr,192),l=buf.getChannelData(0),r=buf.numberOfChannels>1?buf.getChannelData(1):l,block=1152,out=[];for(var i=0;i<l.length;i+=block){var la=new Int16Array(Math.min(block,l.length-i)),ra=new Int16Array(la.length);for(var j=0;j<la.length;j++){la[j]=Math.max(-32768,Math.min(32767,l[i+j]*32767));ra[j]=Math.max(-32768,Math.min(32767,r[i+j]*32767))}var mp=enc.encodeBuffer(la,ra);if(mp.length)out.push(mp)}var end=enc.flush();if(end.length)out.push(end);download(new Blob(out,{type:'audio/mpeg'}),exportBaseName()+'.mp3');state.exporting=false;busy(false);toast(t('export.savedMp3'))}catch(e){console.error(e);state.exporting=false;busy(false);toast(t('export.mp3Fail'))}}
+  function exportVideo(){
+    if(!window.MediaRecorder||!HTMLCanvasElement.prototype.captureStream||typeof MediaRecorder.isTypeSupported!=='function'){toast(t('export.noVideo'));return}
+    // Samsung's stock video player (and most phone players) only play MP4
+    // whose audio track is AAC. A codec-less 'video/mp4' request lets the
+    // browser pick its own default audio codec (often Opus), which plays
+    // back silent with an "unsupported audio codec" warning. So MP4 is
+    // only offered when the FULL H.264 + AAC mime string is supported;
+    // otherwise fall back to WebM instead of emitting a broken MP4.
+    var MP4_AAC_CANDS=['video/mp4;codecs=avc1.640028,mp4a.40.2','video/mp4;codecs=avc1.42E01E,mp4a.40.2'];
+    var mime=null,isMp4Aac=false;
+    function typeOk(s){try{return !!MediaRecorder.isTypeSupported(s)}catch(e){return false}}
+    for(var mi=0;mi<MP4_AAC_CANDS.length;mi++){if(typeOk(MP4_AAC_CANDS[mi])){mime=MP4_AAC_CANDS[mi];isMp4Aac=true;break}}
+    if(!mime){var webmCands=['video/webm;codecs=vp9,opus','video/webm;codecs=vp8,opus','video/webm'];for(var wi=0;wi<webmCands.length;wi++){if(typeOk(webmCands[wi])){mime=webmCands[wi];break}}}
+    if(!mime){toast(t('export.noVideo'));return}
+    state.exporting=true;
+    busy(true,function(){return t('busy.video')},function(){return t('busy.videoSub')});
+    stopPlayback();state.offset=0;updateTransport();
+    var canvas=document.createElement('canvas');canvas.width=1280;canvas.height=720;
+    var c=canvas.getContext('2d'),chunks=[],rec=null,oldMaster=null,swapped=false,finished=false,aborted=false,started=false,wallStart=performance.now(),baseName=exportBaseName();
+    function cleanup(){if(finished)return;finished=true;state.exporting=false;if(swapped&&oldMaster){try{state.master.disconnect()}catch(e){}state.master=oldMaster}busy(false);updateTransport()}
+    try{
+      var stream=canvas.captureStream(30),ctx=ensureAudio(),dest=ctx.createMediaStreamDestination();
+      oldMaster=state.master;
+      state.master=ctx.createGain();state.master.gain.value=+$('#masterVol').value;state.master.connect(ctx.destination);state.master.connect(dest);swapped=true;
+      dest.stream.getAudioTracks().forEach(function(tr){stream.addTrack(tr)});
+      rec=new MediaRecorder(stream,mime?{mimeType:mime}:undefined);
+      rec.ondataavailable=function(e){if(e.data.size)chunks.push(e.data)};
+      rec.onerror=function(e){console.error(e);cleanup();toast(t('export.videoFail'))};
+      rec.onstop=function(){
+        var rt=rec.mimeType||mime||'',isMp4=rt.indexOf('mp4')>-1,blob=new Blob(chunks,{type:rt.split(';')[0]||'video/webm'}),fail=aborted||!chunks.length;
+        cleanup();
+        if(fail){toast(t('export.videoFail'));return}
+        if(!isMp4){download(blob,baseName+'.webm');toast(t('export.savedWebm'));return}
+        // Verify the recorded MP4 really carries AAC audio. If the mime
+        // reports codecs and mp4a is absent (or it reports Opus), warn
+        // instead of claiming success — that file would be silent in
+        // players like Samsung's stock video app. When the browser
+        // reports no codec detail but we requested an explicit AAC
+        // mime (isMp4Aac), isTypeSupported already guaranteed AAC.
+        var hasCodecDetail=rt.indexOf('codecs')>-1||rt.indexOf('opus')>-1||rt.indexOf('mp4a')>-1;
+        var hasAac=rt.indexOf('mp4a')>-1;
+        if(hasCodecDetail&&!hasAac){download(blob,baseName+'.mp4');toast(t('export.mp4NoAac'));return}
+        if(!isMp4Aac&&!hasAac){download(blob,baseName+'.mp4');toast(t('export.mp4NoAac'));return}
+        download(blob,baseName+'.mp4');toast(t('export.savedMp4'));
+      };
+      rec.start(250);
+      playPlayback();
+      function frame(){
+        if(finished)return;
+        var pos=-1;
+        if(state.playing&&state.audio){pos=state.audio.currentTime-state.startedAt;started=true}
+        else if(started){try{rec.stop()}catch(e){cleanup()}return}
+        else if(performance.now()-wallStart>5000){aborted=true;try{rec.stop()}catch(e){cleanup();toast(t('export.videoFail'))}return}
+        var elapsed=Math.max(0,pos);
+        c.fillStyle='#0d1211';c.fillRect(0,0,1280,720);
+        c.fillStyle='#38c6b6';c.font='700 54px sans-serif';c.fillText(state.name,70,100);
+        c.fillStyle='#9daba6';c.font='28px monospace';c.fillText(state.tempo+' BPM  ·  '+formatTime(elapsed,true)+' / '+formatTime(dispDuration(),true),72,150);
+        var active=[];state.tracks.forEach(function(t,ti){t.notes.forEach(function(n){if(noteSongStart(n)<=elapsed&&noteSongStart(n)+noteSongDur(n)>=elapsed)active.push({n:n,ti:ti})})});
+        for(var i=0;i<48;i++){var x=70+i*23,y=590,h=18;c.fillStyle='#24302c';c.fillRect(x,y,18,h)}
+        active.forEach(function(a){var pi=Math.max(0,Math.min(47,a.n.pitch-36)),x=70+pi*23,y=590-a.ti*56;c.fillStyle=colors[a.ti%colors.length];c.fillRect(x,y,Math.max(18,noteSongDur(a.n)*55),38)});
+        c.fillStyle='#eef5f2';c.font='24px sans-serif';state.tracks.forEach(function(t,i){var info=instrumentInfo(t.instrument)||instrumentInfo('piano');c.fillText(t.name+'  /  '+info.name,72,250+i*60)});
+        if(pos>=dispDuration()+.35){stopPlayback();try{rec.stop()}catch(e){cleanup()}return}
+        requestAnimationFrame(frame);
+      }
+      requestAnimationFrame(frame);
+    }catch(e){console.error(e);cleanup();toast(t('export.videoFail'))}
+  }
   init();
 })();
 </script>
