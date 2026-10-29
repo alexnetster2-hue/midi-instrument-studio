@@ -70,6 +70,26 @@
     .lower{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:18px}.info-panel,.export-panel{border:1px solid var(--line);background:var(--panel);padding:18px;box-shadow:var(--shadow-sm)}.info-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:14px}.metric{padding:12px;background:var(--panel-2)}.metric b{display:block;font:600 20px "IBM Plex Mono";letter-spacing:-.01em}.metric span{font-size:10px;color:var(--muted)}
     .engine-note{display:flex;gap:12px;align-items:flex-start;margin-top:14px;padding-top:14px;border-top:1px solid var(--line)}.engine-note svg{flex:0 0 auto;color:var(--accent)}.engine-note b{font-size:12px}.engine-note p{font-size:11px;line-height:1.55;color:var(--muted);margin:4px 0 0}
     .sf-panel{border:1px solid var(--line);background:var(--panel);padding:18px;box-shadow:var(--shadow-sm)}.sf-head{display:flex;align-items:center;gap:18px}.sf-copy{min-width:0}.sf-copy h2{font-size:14px;margin:0}.sf-copy p{font-size:11px;line-height:1.55;color:var(--muted);margin:5px 0 0}.sf-add{flex:0 0 auto}.sf-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:8px;margin-top:14px}.sf-item{min-width:0;display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:10px;padding:11px 12px;background:var(--panel-2);border:1px solid var(--line);border-radius:6px}.sf-item b{display:block;font-size:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.sf-item small{display:block;margin-top:2px;color:var(--muted);font:500 9px "IBM Plex Mono"}.sf-remove{width:40px;height:40px;border:1px solid var(--line);border-radius:5px;background:var(--panel);color:var(--muted)}.sf-empty{margin-top:13px;padding:12px;border:1px dashed var(--line);color:var(--muted);font-size:11px;text-align:center}.sf-panel.is-busy .sf-add{opacity:.55;pointer-events:none}
+    .proj-panel{border:1px solid var(--line);background:var(--panel);padding:18px;box-shadow:var(--shadow-sm)}
+    .proj-status{margin:12px 0 0;font-size:11px;color:var(--muted)}
+    .proj-status.dirty{color:var(--amber);font-weight:700}
+    .proj-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:8px;margin-top:12px}
+    .proj-list:empty{display:none}
+    .proj-item{min-width:0;display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:10px;padding:11px 12px;background:var(--panel-2);border:1px solid var(--line);border-radius:6px}
+    .proj-info b{display:block;font-size:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .proj-info small{display:block;margin-top:2px;color:var(--muted);font:500 9px "IBM Plex Mono"}
+    .proj-actions{display:flex;gap:6px}
+    .proj-btn{min-height:44px;padding:0 12px;border:1px solid var(--line);border-radius:6px;background:var(--panel);font-size:11px;font-weight:700;transition:transform 120ms ease-out,background-color 140ms ease-out,border-color 140ms ease-out}
+    .proj-btn:active{transform:scale(.97)}
+    .proj-btn.load{background:var(--accent);color:var(--on-accent);border-color:transparent}
+    .proj-empty{margin-top:12px;padding:12px;border:1px dashed var(--line);color:var(--muted);font-size:11px;text-align:center}
+    .modal{position:fixed;inset:0;z-index:70;background:#0009;display:none;place-items:center;padding:16px}
+    .modal.show{display:grid}
+    .modal-card{width:min(400px,calc(100vw - 32px));background:var(--panel);border:1px solid var(--line);padding:22px;box-shadow:var(--shadow)}
+    .modal-card p{margin:0;font-size:13px;line-height:1.6}
+    .modal-actions{display:flex;gap:8px;justify-content:flex-end;margin-top:18px;flex-wrap:wrap}
+    .modal-actions .ghost-btn,.modal-actions .solid-btn{min-height:44px}
+    @media(max-width:560px){.proj-list{grid-template-columns:1fr}.proj-panel{padding:14px}}
     .cmp-panel{border:1px solid var(--line);background:var(--panel);padding:18px;box-shadow:var(--shadow-sm)}
     .cmp-head h2{font-size:14px;margin:0}.cmp-head p{font-size:11px;line-height:1.55;color:var(--muted);margin:5px 0 0}
     .cmp-controls{display:flex;align-items:flex-end;gap:10px;flex-wrap:wrap;margin-top:14px}
@@ -366,6 +386,16 @@
             <p class="format-note" id="midiNameHint" data-i18n="export.note">입력한 이름이 MIDI·WAV·MP3·영상 파일 모두에 적용됩니다. WAV는 무손실, MP3는 192 kbps입니다. 영상 MP4는 H.264 영상 + AAC 오디오로 저장되며, 브라우저가 이를 지원하지 않으면 WebM으로 저장됩니다.</p>
           </section>
         </div>
+        <section class="proj-panel" id="projPanel" aria-label="프로젝트 저장">
+          <div class="sf-head">
+            <div class="sf-copy"><h2 data-i18n="proj.title">프로젝트 저장</h2><p data-i18n="proj.desc">지금 작업(노트 편집·악기·템포·키·파일 이름)을 이 기기·브라우저에 저장해 두면, 탭을 닫았다가 다시 열어도 아래 목록에서 그대로 불러올 수 있어요. 다른 기기·브라우저와는 공유되지 않아요.</p></div>
+            <div class="spacer"></div>
+            <button type="button" class="solid-btn" id="projSaveBtn" data-i18n="proj.save">지금 프로젝트 저장</button>
+          </div>
+          <p class="proj-status" id="projStatus" aria-live="polite"></p>
+          <div class="proj-empty" id="projEmpty" data-i18n="proj.empty">아직 저장된 프로젝트가 없습니다.</div>
+          <div class="proj-list" id="projList"></div>
+        </section>
       </section>
     </main>
   </div>
@@ -379,6 +409,7 @@
 </div>
 <div class="toast" id="toast"></div>
 <div class="busy" id="busy"><div class="busy-card"><div class="spinner"></div><p id="busyTitle" data-i18n="busy.title">오디오를 렌더링하고 있어요</p><small id="busySub" data-i18n="busy.sub">브라우저에서 처리 중입니다</small></div></div>
+<div class="modal" id="switchModal" role="alertdialog" aria-modal="true" aria-labelledby="switchMsg"><div class="modal-card"><p id="switchMsg"></p><div class="modal-actions"><button type="button" class="ghost-btn" id="switchCancel" data-i18n="proj.cancel">취소</button><button type="button" class="solid-btn" id="switchOk" data-i18n="proj.continue">저장하지 않고 계속</button></div></div></div>
 <script src="https://cdn.jsdelivr.net/npm/lamejs@1.2.1/lame.min.js"></script>
 <script>
 (function(){
@@ -441,6 +472,7 @@
       'inst.changed':'{name}로 변경했어요','inst.restored':'{name}로 되돌렸어요','inst.resetTitle':'이 트랙을 {name}로 되돌리기','inst.original':'원래 악기',
       'opt.builtinGroup':'내장 신시사이저','opt.wavGroup':'WAV 악기','opt.builtin':'내장 신시사이저','opt.drumPrefix':'드럼 · ',
       'sf.presetDesc':'{name} · 소리 번호 {n}','sf.itemMeta':'{n}개 악기 소리 · {size}','sf.removeAria':'{name} 제거','sf.removed':'{name}을 보관함에서 제거했어요','sf.choose':'SF2 파일을 선택해 주세요','sf.ready':'{n}개 SF2 · {m}개 악기 소리를 준비했어요','sf.loadFail':'SF2를 읽지 못했어요: {msg}','sf.autoApplied':'{n}개 트랙에 SF2 소리 자동 적용','sf.restored':'저장된 SF2 {n}개를 자동으로 불러왔어요','sf.saveFail':'브라우저 저장 공간이 부족해 일부 SF2는 이번 탭에서만 유지돼요','sf.saved':'이 기기에 저장됨',
+      'proj.title':'프로젝트 저장','proj.desc':'지금 작업(노트 편집·악기·템포·키·파일 이름)을 이 기기·브라우저에 저장해 두면, 탭을 닫았다가 다시 열어도 아래 목록에서 그대로 불러올 수 있어요. 다른 기기·브라우저와는 공유되지 않아요.','proj.save':'지금 프로젝트 저장','proj.savedAs':'{name} 프로젝트를 저장했어요','proj.loaded':'{name} 프로젝트를 불러왔어요','proj.deleted':'{name} 프로젝트를 삭제했어요','proj.empty':'아직 저장된 프로젝트가 없습니다.','proj.load':'불러오기','proj.delete':'삭제','proj.loadAria':'{name} 프로젝트 불러오기','proj.deleteAria':'{name} 프로젝트 삭제','proj.meta':'{date} · {n}개 트랙 · {bpm} BPM','proj.dirty':'저장되지 않은 변경이 있어요','proj.notSaved':'아직 저장하지 않은 프로젝트예요','proj.clean':'저장된 내용과 같은 상태예요','proj.warn':'저장되지 않은 변경이 있어요. 저장하지 않고 계속하면 지금 작업이 사라집니다.','proj.continue':'저장하지 않고 계속','proj.cancel':'취소','proj.saveFail':'프로젝트를 저장하지 못했어요. 브라우저 저장 공간을 확인해 주세요.','proj.loadFail':'프로젝트를 불러오지 못했어요',
       'set.cardTitle':'{name} 세트','set.tracks':'{n}개 트랙 동시 교체','set.applied':'적용됨','set.apply':'세트 적용','set.aria':'{name} 세트 적용: {n}개 트랙 악기 한 번에 교체','set.toast':'{name} 세트를 적용했어요 ({n}개 트랙)',
       'cmp.hintNeed':'SF2를 2개 이상 추가하면 비교할 수 있어요','cmp.hintInfo':'SF2 {n}개 · 선택한 템플릿 8마디 전체를 폰트별 세트 추천(대표 악기 소리)으로 렌더링합니다. 역할에 맞는 악기 소리가 없는 트랙은 내장 악기로 대체됩니다.',
       'cmp.busyTitle':'폰트를 비교 렌더링하고 있어요','cmp.busySub':'{name} 8마디 · SF2 {n}개 · 같은 길이·같은 음량','cmp.done':'비교 클립 {n}개를 만들었어요 · {name} 구간','cmp.failed':'비교 렌더링에 실패했어요',
@@ -510,6 +542,7 @@
       'inst.changed':'Changed to {name}','inst.restored':'Restored to {name}','inst.resetTitle':'Restore this track to {name}','inst.original':'Original instrument',
       'opt.builtinGroup':'Built-in synthesizer','opt.wavGroup':'WAV instruments','opt.builtin':'Built-in synthesizer','opt.drumPrefix':'Drums · ',
       'sf.presetDesc':'{name} · Sound {n}','sf.itemMeta':'{n} instrument sounds · {size}','sf.removeAria':'Remove {name}','sf.removed':'Removed {name} from the library','sf.choose':'Please choose an SF2 file','sf.ready':'Ready: {n} SF2 · {m} instrument sounds','sf.loadFail':'Could not read the SF2: {msg}','sf.autoApplied':'SF2 sounds auto-applied to {n} tracks','sf.restored':'Loaded {n} saved SF2 automatically','sf.saveFail':'Browser storage was not enough, so some SF2 are kept only for this tab','sf.saved':'Saved on this device',
+      'proj.title':'Project save','proj.desc':'Save the current work (note edits, instruments, tempo, key, file name) on this device and browser, and you can load it back from the list below even after closing the tab. It is not shared with other devices or browsers.','proj.save':'Save this project','proj.savedAs':'Saved the {name} project','proj.loaded':'Loaded the {name} project','proj.deleted':'Deleted the {name} project','proj.empty':'No saved projects yet.','proj.load':'Load','proj.delete':'Delete','proj.loadAria':'Load the {name} project','proj.deleteAria':'Delete the {name} project','proj.meta':'{date} · {n} tracks · {bpm} BPM','proj.dirty':'You have unsaved changes','proj.notSaved':'This project has not been saved yet','proj.clean':'Same as the saved version','proj.warn':'You have unsaved changes. If you continue without saving, the current work will be lost.','proj.continue':'Continue without saving','proj.cancel':'Cancel','proj.saveFail':'Could not save the project. Please check the browser storage space.','proj.loadFail':'Could not load the project',
       'set.cardTitle':'{name} set','set.tracks':'Change {n} tracks at once','set.applied':'Applied','set.apply':'Apply set','set.aria':'Apply {name} set: change {n} track instruments at once','set.toast':'Applied {name} set ({n} tracks)',
       'cmp.hintNeed':'Add at least 2 SF2 files to compare','cmp.hintInfo':'SF2 {n} · Renders the full 8 bars of the selected template with each font\'s set recommendation (main instrument sounds). Tracks without a matching sound use a built-in instrument.',
       'cmp.busyTitle':'Rendering font comparison','cmp.busySub':'{name} 8 bars · SF2 {n} · Same length, same volume','cmp.done':'Made {n} comparison clips · {name} section','cmp.failed':'Comparison rendering failed',
@@ -593,7 +626,7 @@
   }
   function refreshDynamicTexts(){
     /* 2단계: 상태는 그대로 두고 텍스트만 현재 언어로 다시 그린다 */
-    renderTemplates();renderCompose();rebuildInstrumentOptions();renderTracks();renderInstrument();renderMeta();renderSoundFonts();renderWavInsts();updateCmpPanel();renderCmpClips();
+    renderTemplates();renderCompose();rebuildInstrumentOptions();renderTracks();renderInstrument();renderMeta();renderSoundFonts();renderWavInsts();updateCmpPanel();renderCmpClips();renderProjList();refreshProjStatus();
     if(state.starting){var pl=$('#playLabel');if(pl)pl.textContent=t('trans.ready')}else setPlayIcon(state.playing);
     updateEditToggleText();refreshBusyText();updateVideoOrientationUI();
   }
@@ -631,7 +664,7 @@
     lead:{name:'아날로그 리드',desc:'밝은 톱니파와 필터가 만드는 선명한 리드.',program:81},
     drums:{name:'드럼 키트',desc:'킥·스네어·하이햇을 음높이에 따라 배치한 전자 드럼.',program:0}
   };
-  var state={name:'샘플 프로젝트',ppq:480,tempo:120,baseTempo:120,duration:16,tracks:[],tplId:null,selected:0,playing:false,starting:false,startedAt:0,offset:0,audio:null,master:null,timer:null,schedTimer:null,schedPtr:null,nodes:[],soundfonts:[],nextSfId:1,wavInsts:[],nextWavId:1,litEls:null,litKeys:null,visPtr:null,visAct:null,visPos:0,visRaf:0,keyMap:{},rollW:0,recPage:0,keyPc:0,keyShift:0,progId:null,octave:4,editMode:false,selNote:null,selTrack:-1,undoStack:[],redoStack:[],rollView:null,cmpClips:[],cmpIdx:-1,cmpSrc:null,cmpRendering:false,grpOtherOpen:false,grpSameAll:false,videoOrientation:detectVideoOrientation(),exporting:false,sfRolePrefs:loadSfRolePrefs(),sfAutoCount:0,sfRestoring:false};
+  var state={name:'샘플 프로젝트',ppq:480,tempo:120,baseTempo:120,duration:16,tracks:[],tplId:null,selected:0,playing:false,starting:false,startedAt:0,offset:0,audio:null,master:null,timer:null,schedTimer:null,schedPtr:null,nodes:[],soundfonts:[],nextSfId:1,wavInsts:[],nextWavId:1,litEls:null,litKeys:null,visPtr:null,visAct:null,visPos:0,visRaf:0,keyMap:{},rollW:0,recPage:0,keyPc:0,keyShift:0,progId:null,octave:4,editMode:false,selNote:null,selTrack:-1,undoStack:[],redoStack:[],rollView:null,cmpClips:[],cmpIdx:-1,cmpSrc:null,cmpRendering:false,grpOtherOpen:false,grpSameAll:false,videoOrientation:detectVideoOrientation(),exporting:false,sfRolePrefs:loadSfRolePrefs(),sfAutoCount:0,sfRestoring:false,savedSig:null};
   var rollDrag=null;
   function demo(){
     function note(p,s,d,v){return {pitch:p,start:s,duration:d,velocity:v||.78}}
@@ -731,13 +764,16 @@
     Array.prototype.forEach.call(grid.children,function(btn){var tpl=tplById(btn.dataset.tpl);if(tpl){btn.setAttribute('aria-label',t('tpl.aria',{label:getTplLabel(tpl)}));var st=btn.querySelector('strong'),sm=btn.querySelector('small');if(st)st.textContent=getTplLabel(tpl);if(sm)sm.textContent=getTplMeta(tpl)}btn.classList.toggle('active',btn.dataset.tpl===state.tplId)});
   }
   function applyTemplate(tpl){
+    confirmUnsaved().then(function(ok){if(ok)doApplyTemplate(tpl)});
+  }
+  function doApplyTemplate(tpl){
     stopPlayback();state.offset=0;
     var spb=60/tpl.tempo;
     state.tracks=tpl.build().map(function(t){return{name:t.name,channel:t.channel,program:t.program,instrument:t.instrument,originalInstrument:t.instrument,gain:t.gain,pan:t.pan||0,muted:false,notes:t.notes.map(function(n){return{pitch:n[0],start:n[1]*spb,duration:Math.max(.03,n[2]*spb),velocity:n[3]==null?.8:n[3]}}).sort(function(a,b){return a.start-b.start})}});
     applySfAuto(state.tracks,false);
     state.name=tpl.name;state.tplId=tpl.id;state.baseTempo=tpl.tempo;state.tempo=tpl.tempo;state.selected=0;state.keyPc=0;state.keyShift=0;state.progId=null;
     $('#tempoInput').value=tpl.tempo;
-    recalcDuration();setMidiFileName(state.name);renderAll();
+    recalcDuration();setMidiFileName(state.name);renderAll();state.savedSig=projectSignature();refreshProjStatus();
     toast(t('tpl.applied',{name:getTplName(tpl),bpm:tpl.tempo})+(state.sfAutoCount>0?' · '+t('sf.autoApplied',{n:state.sfAutoCount}):''));
   }
   var KEY_NAMES=['C','C♯','D','E♭','E','F','F♯','G','A♭','A','B♭','B'];
@@ -966,11 +1002,137 @@
     });
     updateCmpPlayUI();
   }
+  /* ===== 프로젝트 저장 (IndexedDB) =====
+     작업 전체(트랙·노트·악기·템포·키·파일 이름)를 이 기기·브라우저에 저장하고 목록에서 불러온다.
+     저장본과 현재 상태의 서명이 다르면 '저장되지 않은 변경'으로 보고, 교체 전에 모달로 확인한다 */
+  var PROJ_DB_NAME='midi-studio-projects',PROJ_DB_STORE='projects',projDbPromise=null,projSavedNames={};
+  function projDb(){
+    if(projDbPromise)return projDbPromise;
+    projDbPromise=new Promise(function(resolve,reject){
+      if(!window.indexedDB){reject(Error('IndexedDB unavailable'));return}
+      var req;try{req=indexedDB.open(PROJ_DB_NAME,1)}catch(e){reject(e);return}
+      req.onupgradeneeded=function(){var db=req.result;if(!db.objectStoreNames.contains(PROJ_DB_STORE))db.createObjectStore(PROJ_DB_STORE,{keyPath:'name'})};
+      req.onsuccess=function(){resolve(req.result)};
+      req.onerror=function(){reject(req.error||Error('IndexedDB open failed'))};
+      req.onblocked=function(){reject(Error('IndexedDB blocked'))};
+    });
+    projDbPromise.catch(function(){projDbPromise=null});
+    return projDbPromise;
+  }
+  function projTx(mode,fn){
+    return projDb().then(function(db){
+      return new Promise(function(resolve,reject){
+        var tx=db.transaction(PROJ_DB_STORE,mode),store=tx.objectStore(PROJ_DB_STORE),out,reqResult,hasReq=false;
+        tx.oncomplete=function(){resolve(hasReq?reqResult:out)};
+        tx.onerror=function(){reject(tx.error||Error('IndexedDB write failed'))};
+        tx.onabort=function(){reject(tx.error||Error('IndexedDB write aborted'))};
+        try{out=fn(store);if(out&&typeof out==='object'&&'onsuccess' in out){hasReq=true;out.onsuccess=function(){reqResult=out.result};out.onerror=function(){reject(out.error||Error('IndexedDB request failed'))}}}catch(e){try{tx.abort()}catch(e2){}reject(e)}
+      });
+    });
+  }
+  function projectSignature(){
+    var fnEl=$('#midiFileName'),parts=[state.name||'',state.tplId||'',state.tempo,state.baseTempo,state.keyPc,state.keyShift,state.progId||'',fnEl?fnEl.value:''];
+    state.tracks.forEach(function(tr){
+      var s=0;tr.notes.forEach(function(n){s+=n.pitch*3+n.start*7+n.duration*13+(n.velocity||0)*17});
+      parts.push([tr.name,tr.channel,tr.program,tr.instrument,tr.originalInstrument,tr.gain,tr.pan,tr.muted?1:0,tr.notes.length,s.toFixed(3)].join('|'));
+    });
+    return parts.join('~');
+  }
+  function isProjectDirty(){return state.savedSig!=null&&projectSignature()!==state.savedSig}
+  function refreshProjStatus(){
+    var el=$('#projStatus');if(!el)return;
+    var dirty=isProjectDirty();
+    el.textContent=dirty?t('proj.dirty'):(projSavedNames[state.name]?t('proj.clean'):t('proj.notSaved'));
+    el.classList.toggle('dirty',dirty);
+  }
+  var switchResolve=null;
+  function closeSwitchModal(ok){
+    var m=$('#switchModal');if(m)m.classList.remove('show');
+    if(switchResolve){var r=switchResolve;switchResolve=null;r(ok)}
+  }
+  function confirmUnsaved(){
+    if(!isProjectDirty())return Promise.resolve(true);
+    if(switchResolve)closeSwitchModal(false);
+    return new Promise(function(resolve){
+      switchResolve=resolve;
+      $('#switchMsg').textContent=t('proj.warn');
+      $('#switchModal').classList.add('show');
+      var okBtn=$('#switchOk');if(okBtn)okBtn.focus();
+    });
+  }
+  function serializeProject(){
+    return{v:1,name:state.name,tplId:state.tplId,ppq:state.ppq,tempo:state.tempo,baseTempo:state.baseTempo,keyPc:state.keyPc,keyShift:state.keyShift,progId:state.progId,selected:state.selected,fileName:($('#midiFileName').value||''),tracks:state.tracks.map(function(tr){return{name:tr.name,channel:tr.channel,program:tr.program,instrument:tr.instrument,originalInstrument:tr.originalInstrument,gain:tr.gain,pan:tr.pan,muted:!!tr.muted,notes:tr.notes.map(function(n){return{pitch:n.pitch,start:n.start,duration:n.duration,velocity:n.velocity}})}})};
+  }
+  function saveProject(){
+    var name=state.name||'MIDI 프로젝트';
+    var rec={name:name,savedAt:Date.now(),data:serializeProject()};
+    projTx('readwrite',function(store){store.put(rec)}).then(function(){
+      state.savedSig=projectSignature();refreshProjStatus();renderProjList();
+      toast(t('proj.savedAs',{name:name}));
+    }).catch(function(e){console.error(e);toast(t('proj.saveFail'))});
+  }
+  function applyProjectData(d){
+    if(!d||!d.tracks||!d.tracks.length){toast(t('proj.loadFail'));return}
+    stopPlayback();state.offset=0;
+    state.name=d.name||'MIDI 프로젝트';state.tplId=d.tplId||null;state.ppq=d.ppq||480;
+    state.baseTempo=d.baseTempo||d.tempo||120;state.tempo=d.tempo||state.baseTempo;
+    state.keyPc=d.keyPc||0;state.keyShift=d.keyShift||0;state.progId=d.progId||null;
+    state.tracks=d.tracks.map(function(tr){
+      var notes=(tr.notes||[]).map(function(n){return{pitch:n.pitch,start:n.start,duration:n.duration,velocity:n.velocity==null?.8:n.velocity}}).sort(function(a,b){return a.start-b.start});
+      var probe={name:tr.name,channel:tr.channel,program:tr.program,instrument:tr.instrument,originalInstrument:tr.originalInstrument,notes:notes};
+      var inst=tr.instrument;
+      if(!instrumentInfo(inst)){var auto=sfAutoForTrack(probe);inst=auto||(instruments[tr.originalInstrument]?tr.originalInstrument:'piano')}
+      var orig=tr.originalInstrument;if(!instrumentInfo(orig))orig=inst;
+      return{name:tr.name,channel:tr.channel,program:tr.program,instrument:inst,originalInstrument:orig,gain:tr.gain==null?.8:tr.gain,pan:tr.pan||0,muted:!!tr.muted,notes:notes};
+    });
+    state.selected=Math.max(0,Math.min(state.tracks.length-1,d.selected||0));
+    $('#tempoInput').value=state.tempo;
+    var fnEl=$('#midiFileName');if(fnEl)fnEl.value=d.fileName||((state.name||'MIDI 프로젝트')+'-편곡');
+    recalcDuration();renderAll();
+    state.savedSig=projectSignature();refreshProjStatus();
+  }
+  function loadProjectByName(name){
+    projTx('readonly',function(store){return store.get(name)}).then(function(rec){
+      if(!rec||!rec.data){toast(t('proj.loadFail'));renderProjList();return}
+      confirmUnsaved().then(function(ok){if(!ok)return;applyProjectData(rec.data);toast(t('proj.loaded',{name:rec.name}))});
+    }).catch(function(e){console.error(e);toast(t('proj.loadFail'))});
+  }
+  function deleteProjectByName(name){
+    projTx('readwrite',function(store){store.delete(name)}).then(function(){renderProjList();toast(t('proj.deleted',{name:name}))}).catch(function(e){console.error(e);toast(t('proj.loadFail'))});
+  }
+  function renderProjList(){
+    var list=$('#projList'),empty=$('#projEmpty');if(!list)return;
+    projTx('readonly',function(store){return store.getAll()}).then(function(records){
+      records=Array.prototype.slice.call(records||[]).sort(function(a,b){return (b.savedAt||0)-(a.savedAt||0)});
+      projSavedNames={};records.forEach(function(r){projSavedNames[r.name]=1});
+      list.innerHTML='';
+      if(empty)empty.style.display=records.length?'none':'block';
+      records.forEach(function(rec){
+        var d=rec.data||{};
+        var el=document.createElement('div');el.className='proj-item';
+        var info=document.createElement('div');info.className='proj-info';
+        var b=document.createElement('b');b.textContent=rec.name;info.appendChild(b);
+        var sm=document.createElement('small');
+        var date=rec.savedAt?new Date(rec.savedAt).toLocaleString(currentLang==='en'?'en-US':'ko-KR',{month:'short',day:'numeric',hour:'2-digit',minute:'2-digit'}):'';
+        sm.textContent=t('proj.meta',{date:date,n:(d.tracks||[]).length,bpm:d.tempo||120});
+        info.appendChild(sm);el.appendChild(info);
+        var acts=document.createElement('div');acts.className='proj-actions';
+        var loadBtn=document.createElement('button');loadBtn.type='button';loadBtn.className='proj-btn load';loadBtn.textContent=t('proj.load');loadBtn.setAttribute('aria-label',t('proj.loadAria',{name:rec.name}));
+        loadBtn.onclick=function(){loadProjectByName(rec.name)};
+        var delBtn=document.createElement('button');delBtn.type='button';delBtn.className='proj-btn';delBtn.textContent=t('proj.delete');delBtn.setAttribute('aria-label',t('proj.deleteAria',{name:rec.name}));
+        delBtn.onclick=function(){deleteProjectByName(rec.name)};
+        acts.appendChild(loadBtn);acts.appendChild(delBtn);el.appendChild(acts);
+        list.appendChild(el);
+      });
+      refreshProjStatus();
+    }).catch(function(e){console.error(e);if(empty)empty.style.display='block'});
+  }
   function init(){
     applyLanguage(detectLang());
     $$('.lang-btn').forEach(function(btn){btn.addEventListener('click',function(){setLanguage(btn.getAttribute('data-lang'))})});
     rebuildInstrumentOptions();
     buildKeyboard(); bind(); demo();
+    state.savedSig=projectSignature();refreshProjStatus();renderProjList();
     restoreSoundFonts();
   }
   var gmFamilies=['피아노','크로매틱 퍼커션','오르간','기타','베이스','현악기','앙상블','브라스','리드','파이프','신스 리드','신스 패드','신스 이펙트','민족 악기','타악기','효과음'];
@@ -1207,7 +1369,11 @@
   function shiftOctave(d){var next=Math.max(3,Math.min(6,state.octave+d));if(next===state.octave)return;clearVisuals();state.octave=next;buildKeyboard()}
   function bind(){
     $('#openBtn').onclick=$('#browseBtn').onclick=function(){ $('#fileInput').click() };
-    $('#fileInput').onchange=function(e){if(e.target.files[0]) loadFile(e.target.files[0])};
+    var psb=$('#projSaveBtn');if(psb)psb.onclick=saveProject;
+    var sok=$('#switchOk');if(sok)sok.onclick=function(){closeSwitchModal(true)};
+    var scan=$('#switchCancel');if(scan)scan.onclick=function(){closeSwitchModal(false)};
+    var mfnEl=$('#midiFileName');if(mfnEl)mfnEl.addEventListener('input',refreshProjStatus);
+    $('#fileInput').onchange=function(e){var f=e.target.files&&e.target.files[0];e.target.value='';if(f)loadFile(f)};
     $('#sfAddBtn').onclick=function(){ $('#sfInput').click() };
     $('#wavAddBtn').onclick=function(){ $('#wavInput').click() };
     $('#wavInput').onchange=function(e){var files=Array.prototype.slice.call(e.target.files||[]);if(files.length)loadWavInstruments(files);e.target.value=''};
@@ -1275,11 +1441,11 @@
     window.addEventListener('keydown',function(e){if(e.code==='Space'&&e.target.tagName!=='INPUT'&&e.target.tagName!=='SELECT'){e.preventDefault();togglePlay()}});
     window.addEventListener('resize',function(){state.rollW=0;paintPlayhead(state.offset)});
   }
-  function renderAll(){state.selNote=null;state.selTrack=-1;state.undoStack=[];state.redoStack=[];rollDrag=null;renderTemplates();renderCompose();renderTracks();renderInstrument();renderRoll();renderMeta();renderSoundFonts();updateCmpPanel();updateTransport();updateEditUI()}
+  function renderAll(){state.selNote=null;state.selTrack=-1;state.undoStack=[];state.redoStack=[];rollDrag=null;renderTemplates();renderCompose();renderTracks();renderInstrument();renderRoll();renderMeta();renderSoundFonts();updateCmpPanel();updateTransport();updateEditUI();refreshProjStatus()}
   function renderMobileTracks(){var wrap=$('#mobileTabs');if(!wrap)return;wrap.innerHTML='';state.tracks.forEach(function(t,i){var info=instrumentInfo(t.instrument)||instrumentInfo('piano');var el=document.createElement('div');el.className='mtab'+(i===state.selected?' active':'');el.style.setProperty('--tc',colors[i%colors.length]);var main=document.createElement('button');main.type='button';main.className='mtab-main';main.setAttribute('aria-pressed',i===state.selected?'true':'false');main.setAttribute('aria-label',tt('track.selectAria',{name:t.name}));main.innerHTML='<span class="mtab-dot"></span><span class="mtab-txt"><b>'+esc(t.name)+'</b><small>'+esc(info.name)+'</small></span>';main.onclick=function(){state.selected=i;renderTracks();renderInstrument();renderRoll()};var mute=document.createElement('button');mute.type='button';mute.className='mute'+(t.muted?' on':'');mute.textContent='M';mute.setAttribute('aria-label',tt('track.muteAria',{name:t.name}));mute.setAttribute('aria-pressed',t.muted?'true':'false');mute.onclick=function(){t.muted=!t.muted;renderTracks()};el.appendChild(main);el.appendChild(mute);wrap.appendChild(el)})}
   function renderTracks(){var list=$('#trackList');list.innerHTML='';state.tracks.forEach(function(t,i){var info=instrumentInfo(t.instrument)||instrumentInfo('piano');var el=document.createElement('div');el.className='track'+(i===state.selected?' active':'');el.style.setProperty('--tc',colors[i%colors.length]);el.innerHTML='<span class="track-dot"></span><div><b>'+esc(t.name)+'</b><small>'+esc(info.name).toUpperCase()+'</small></div><button class="mute '+(t.muted?'on':'')+'" aria-label="'+esc(tt('track.muteAria',{name:t.name}))+'">M</button>';el.onclick=function(e){if(e.target.classList.contains('mute')){t.muted=!t.muted;renderTracks();return}state.selected=i;renderTracks();renderInstrument();renderRoll()};list.appendChild(el)});$('#trackCount').textContent=state.tracks.length;$('#tracksMetric').textContent=state.tracks.length;renderMobileTracks()}
   function renderNowStatus(){var t=state.tracks[state.selected],nsT=$('#nsTrack'),nsI=$('#nsInst'),nsF=$('#nsFont');if(!t||!nsT||!nsI||!nsF)return;var info=instrumentInfo(t.instrument)||instrumentInfo('piano');nsT.textContent=t.name;nsI.textContent=info.name;nsF.textContent=info.sf?tt('now.font',{name:info.sf.name}):(info.wav?tt('now.wav',{name:info.wav.name}):tt('now.builtin'))}
-  function renderInstrument(){var t=state.tracks[state.selected];if(!t)return;var info=instrumentInfo(t.instrument);if(!info){t.instrument='piano';info=instrumentInfo('piano')}$('#instrumentSelect').value=t.instrument;$('#soundDesc').textContent=info.desc;var original=t.originalInstrument||'piano',originalInfo=instrumentInfo(original)||instrumentInfo('piano'),reset=$('#resetInstrumentBtn');reset.disabled=t.instrument===original;reset.title=tt('inst.resetTitle',{name:originalInfo.name});reset.setAttribute('aria-label',reset.title);$('#trackGain').value=t.gain;$('#trackGainOut').value=t.gain.toFixed(2);$('#trackPan').value=t.pan;$('#trackPanOut').value=panText(t.pan);$('#selectedTrackName').textContent='TRACK '+String(state.selected+1).padStart(2,'0')+' · '+t.name;$('#noteCount').textContent=t.notes.length+' NOTES';renderRecommendations();renderSetRecommendations();renderGroupSwap();renderQuickSwap();var aux=$('#auxSwap');if(aux)aux.style.display=($('#recommendations').classList.contains('show')||$('#setRecommendations').classList.contains('show'))?'block':'none';renderNowStatus()}
+  function renderInstrument(){var t=state.tracks[state.selected];if(!t)return;var info=instrumentInfo(t.instrument);if(!info){t.instrument='piano';info=instrumentInfo('piano')}$('#instrumentSelect').value=t.instrument;$('#soundDesc').textContent=info.desc;var original=t.originalInstrument||'piano',originalInfo=instrumentInfo(original)||instrumentInfo('piano'),reset=$('#resetInstrumentBtn');reset.disabled=t.instrument===original;reset.title=tt('inst.resetTitle',{name:originalInfo.name});reset.setAttribute('aria-label',reset.title);$('#trackGain').value=t.gain;$('#trackGainOut').value=t.gain.toFixed(2);$('#trackPan').value=t.pan;$('#trackPanOut').value=panText(t.pan);$('#selectedTrackName').textContent='TRACK '+String(state.selected+1).padStart(2,'0')+' · '+t.name;$('#noteCount').textContent=t.notes.length+' NOTES';renderRecommendations();renderSetRecommendations();renderGroupSwap();renderQuickSwap();var aux=$('#auxSwap');if(aux)aux.style.display=($('#recommendations').classList.contains('show')||$('#setRecommendations').classList.contains('show'))?'block':'none';renderNowStatus();refreshProjStatus()}
   function renderMeta(){var total=state.tracks.reduce(function(n,t){return n+t.notes.length},0);var mtpl=state.tplId?tplById(state.tplId):null;$('#projectName').textContent=mtpl?getTplName(mtpl):state.name;$('#mainTitle').textContent=mtpl?getTplName(mtpl):(state.name==='샘플 프로젝트'?t('meta.sampleTitle'):state.name);$('#midiMeta').textContent='FORMAT 1 · '+state.tracks.length+' TRACKS · '+state.tempo+' BPM';$('#notesMetric').textContent=total;$('#tempoMetric').textContent=state.tempo;$('#durationMetric').textContent=formatTime(dispDuration(),false);$('#sampleTag').style.display=state.name==='샘플 프로젝트'?'inline-block':'none'}
   function renderRoll(){var t=state.tracks[state.selected];if(!t)return;var notes=t.notes, min=48,max=83;if(notes.length){min=Math.min.apply(null,notes.map(function(n){return n.pitch}));max=Math.max.apply(null,notes.map(function(n){return n.pitch}));min=Math.max(24,min-2);max=Math.min(108,max+2)}var rows=Math.min(12,Math.max(8,max-min+1));max=min+rows-1;var labs=$('#noteLabels');labs.innerHTML='<div style="height:23px"></div>';for(var p=max;p>=min;p--){var s=document.createElement('span');s.textContent=noteName(p);labs.appendChild(s)}var ruler=$('#ruler');ruler.innerHTML='';for(var i=1;i<=8;i++){var s2=document.createElement('span');s2.textContent=i;ruler.appendChild(s2)}var layer=$('#notesLayer');layer.innerHTML='';$('#roll').style.setProperty('--rows',rows);state.rollW=0;if(state.litEls){state.litEls.forEach(function(el){el.classList.remove('playing')});state.litEls=new Set()}notes.forEach(function(n){n._el=null});var shownDur=Math.max(state.duration,1);state.rollView={min:min,max:max,rows:rows,shownDur:shownDur};notes.forEach(function(n){if(n.pitch<min||n.pitch>max)return;var e=document.createElement('div');e.className='note';n._el=e;e._note=n;if(n===state.selNote&&state.selTrack===state.selected)e.classList.add('selected');e.style.setProperty('--tc',colors[state.selected%colors.length]);e.style.left=(n.start/shownDur*100)+'%';e.style.width=(Math.max(n.duration,.08)/shownDur*100)+'%';e.style.top=((max-n.pitch)/rows*100+1)+'%';e.style.height=Math.max(7,100/rows-2)+'%';e.style.opacity=(0.38+(n.velocity||0)*0.62).toFixed(2);e.title=noteName(n.pitch)+' · '+n.start.toFixed(2)+'s';layer.appendChild(e)});$('#noteCount').textContent=notes.length+' NOTES'}
   function noteName(n){var names=['C','C♯','D','D♯','E','F','F♯','G','G♯','A','A♯','B'];return names[n%12]+(Math.floor(n/12)-1)}
@@ -1363,6 +1529,7 @@
       if(remapped)saveSfRolePrefs();
       var autoN=applySfAuto(state.tracks,true);
       rebuildInstrumentOptions();renderSoundFonts();renderTracks();renderInstrument();updateCmpPanel();
+      state.savedSig=projectSignature();refreshProjStatus();
       toast(t('sf.restored',{n:restored})+(autoN>0?' · '+t('sf.autoApplied',{n:autoN}):''));
     }).catch(function(e){
       console.error(e);
@@ -1449,7 +1616,7 @@
   function setPlayIcon(on){$('#playIcon').innerHTML=on?'<path d="M7 5h4v14H7zm6 0h4v14h-4z"/>':'<path d="M8 5v14l11-7z"/>';$('#playLabel').textContent=on?t('trans.pause'):t('trans.play');$('#playBtn').setAttribute('aria-label',on?t('trans.pause'):t('trans.play'));$('#playBtn').classList.remove('is-starting')}
   function updateTransport(){var dur=dispDuration(),cur=Math.min(state.offset,dur);$('#timeDisplay').textContent=formatTime(cur,true)+' / '+formatTime(dur,true);paintPlayhead(cur);var sb=$('#stopBtn');if(sb)sb.disabled=!state.playing&&!state.starting&&state.offset<=0.001}
   function recalcDuration(){var max=0;state.tracks.forEach(function(t){t.notes.forEach(function(n){max=Math.max(max,n.start+n.duration)})});state.duration=max||1}
-  function loadFile(file){if(!/\.(mid|midi)$/i.test(file.name)){toast(t('midi.choose'));return}var r=new FileReader();r.onload=function(){try{stopPlayback();state.offset=0;parseMIDI(new Uint8Array(r.result));state.name=file.name.replace(/\.(mid|midi)$/i,'');state.tplId=null;state.keyPc=0;state.keyShift=0;state.progId=null;setMidiFileName(state.name);renderAll();toast(state.sfAutoCount>0?t('midi.loadedSf',{n:state.tracks.length,m:state.sfAutoCount}):t('midi.loaded',{n:state.tracks.length}))}catch(e){console.error(e);toast(t('midi.loadFail',{msg:e.message}))}};r.readAsArrayBuffer(file)}
+  function loadFile(file){if(!/\.(mid|midi)$/i.test(file.name)){toast(t('midi.choose'));return}confirmUnsaved().then(function(ok){if(!ok)return;var r=new FileReader();r.onload=function(){try{stopPlayback();state.offset=0;parseMIDI(new Uint8Array(r.result));state.name=file.name.replace(/\.(mid|midi)$/i,'');state.tplId=null;state.keyPc=0;state.keyShift=0;state.progId=null;setMidiFileName(state.name);renderAll();state.savedSig=projectSignature();refreshProjStatus();toast(state.sfAutoCount>0?t('midi.loadedSf',{n:state.tracks.length,m:state.sfAutoCount}):t('midi.loaded',{n:state.tracks.length}))}catch(e){console.error(e);toast(t('midi.loadFail',{msg:e.message}))}};r.readAsArrayBuffer(file)})}
   function readVLQ(d,pos){var v=0,b;do{b=d[pos.i++];v=(v<<7)+(b&127)}while(b&128);return v}
   function parseMIDI(d){var p={i:0};function str(n){var s='';while(n--)s+=String.fromCharCode(d[p.i++]);return s}function u16(){return(d[p.i++]<<8)|d[p.i++]}function u32(){return(d[p.i++]<<24)|(d[p.i++]<<16)|(d[p.i++]<<8)|d[p.i++]}
     if(str(4)!=='MThd')throw Error(t('err.noHeader'));var hlen=u32(),format=u16(),ntr=u16(),division=u16();p.i=8+hlen;state.ppq=division&32768?480:division;var raw=[],tempos=[];
